@@ -10,14 +10,14 @@ export default function Hero() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                The Easiest Way to Track Your Moods Online or Offline
+                The Easiest Way to Track Your Moods Online
               </h1>
               <p className="text-lg text-gray-600 max-w-xl">
                 Track feelings, spot patterns, and get simple insights. Start a private mood journal or invite students to use the tracker.
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <Button onClick={() => navigate('/choose-role')}>Start tracking</Button>
+              <Button onClick={() => navigate('/choose/role')}>Start tracking</Button>
               <a className="text-sm underline" href="#features">Learn more</a>
             </div>
           </div>
