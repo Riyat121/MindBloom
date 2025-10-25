@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
+import { Button } from './Button.jsx';
 import { ArrowRight } from "lucide-react";
 import heroDashboard from "@/assets/hero-dashboard.png";
 
