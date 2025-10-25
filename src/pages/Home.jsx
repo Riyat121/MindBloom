@@ -1,49 +1,47 @@
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import Navbar from '../components/Navbar.jsx'
-import Button from '../components/Button.jsx'
-
+// src/pages/Home.jsx
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-full flex flex-col relative overflow-hidden">
-      {/* Angled background panel to mimic the reference */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -left-24 -top-32 h-[140%] w-[72%] rotate-[18deg] bg-white/70" />
-      </div>
-      <Navbar />
-      <main className="flex-1 flex items-center justify-center  px-4">
-        <div className="mx-auto w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-          {/* Left: Title and actions */}
-          <motion.section initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
-            <div className="mb-6 hidden sm:block">
-              <div className="h-px w-40 bg-slate-300" />
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900">
-              Understanding
-              <br />
-              Mental Health
-            </h1>
-            <p className="mt-6 text-lg text-slate-600">Breaking the silence, building resilience.</p>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md">
-              <Link to="/student/login" className="w-full">
-                <Button className="w-full py-3 md:py-4 text-base md:text-lg">Student</Button>
-              </Link>
-              <Link to="/admin/login" className="w-full">
-                <Button variant="secondary" className="w-full py-3 md:py-4 text-base md:text-lg border border-slate-300">Admin</Button>
-              </Link>
-            </div>
-          </motion.section>
+    <main className="min-h-screen bg-gradient-to-br from-cyan-50 to-sky-100 text-gray-800 flex flex-col">
+      {/* Header / Navbar */}
+      <header className="flex justify-between items-center p-6">
+        <h1 className="text-3xl font-bold text-cyan-700">MoodSpark</h1>
+        <nav className="space-x-6 text-gray-700 font-medium">
+          <button onClick={() => navigate("/student/login")} className="hover:text-cyan-700 transition">
+            Student Login
+          </button>
+          <button onClick={() => navigate("/admin/login")} className="hover:text-cyan-700 transition">
+            Admin Login
+          </button>
+        </nav>
+      </header>
 
-          {/* Right: Abstract illustration placeholder */}
-       <div className='flex justify-end'>
-       <img className='right-100' src="https://plus.unsplash.com/premium_vector-1682306562484-b89388ec4304?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1pbi1zYW1lLXNlcmllc3wxfHx8ZW58MHx8fHx8" alt="" />
-       </div>
-        </div>
-      </main>
-      <footer className="py-6 text-center text-sm text-slate-500">© 2025 MindBloom. All Rights Reserved.</footer>
-    </div>
-  )
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center flex-1 text-center px-6">
+        <h2 className="text-5xl md:text-6xl font-bold mb-4 text-gray-800">
+          Track Your Moods. Understand Yourself.
+        </h2>
+        <p className="text-gray-600 max-w-2xl mb-8">
+          MoodSpark helps you monitor your emotional patterns and mental
+          well-being effortlessly. Start your journey toward better
+          self-awareness and mental balance today.
+        </p>
+        <button
+          onClick={() => navigate("/role-select")}
+          className="px-8 py-4 text-lg font-semibold bg-cyan-600 text-white rounded-xl shadow-md hover:bg-cyan-700 transition"
+        >
+          Start Tracking
+        </button>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-4 text-center text-gray-500 text-sm border-t border-gray-200">
+        © {new Date().getFullYear()} MoodSpark. All rights reserved.
+      </footer>
+    </main>
+  );
 }
-
-
