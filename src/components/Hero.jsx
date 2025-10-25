@@ -1,31 +1,63 @@
 import { useNavigate } from 'react-router-dom';
-import Button from './Button.jsx';
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import heroDashboard from "@/assets/hero-dashboard.png";
 
-export default function Hero() {
+export const Hero = () => {
   const navigate = useNavigate();
   return (
-    <section className="bg-gradient-to-r from-indigo-50 to-white py-20 md:py-32">
+    <section className="bg-hero-gradient py-20 md:py-32">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                The Easiest Way to Track Your Moods Online
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                The Easiest Way to Track Your Moods Online or Offline
               </h1>
-              <p className="text-lg text-gray-600 max-w-xl">
-                Track feelings, spot patterns, and get simple insights. Start a private mood journal or invite students to use the tracker.
+              
+              <p className="text-xl md:text-2xl text-primary font-semibold">
+                Recommended by Psychologists, Therapists, and Social Workers
+              </p>
+              
+              <div className="h-1 w-24 bg-primary rounded-full"></div>
+            </div>
+            
+            <div className="space-y-4 text-lg text-foreground/80">
+              <p>
+                eMoods is a user-friendly app for patients to track symptom data relating to Bipolar I and II disorders, Depression, PTSD, and Anxiety Disorders.
+              </p>
+              
+              <p>
+                Identify triggers and patterns to help prevent relapses, and enhance doctor's visits with detailed data exports.
               </p>
             </div>
-            <div className="flex items-center gap-4">
-              <Button onClick={() => navigate('/choose/role')}>Start tracking</Button>
-              <a className="text-sm underline" href="#features">Learn more</a>
-            </div>
+            
+            <Button variant="default" size="lg" className="group">
+              Start Tracking
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Button>
           </div>
-          <div className="flex justify-end">
-            <div className="w-full max-w-md h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">Illustration</div>
+          
+          <div className="relative">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src={heroDashboard} 
+                alt="eMoods Dashboard Interface" 
+                className="w-full h-auto"
+              />
+            </div>
+            
+            <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-amber-400 to-amber-600 text-white px-6 py-8 rounded-xl shadow-xl transform rotate-3">
+              <div className="text-center">
+                <div className="text-2xl font-bold">BEST</div>
+                <div className="text-xl font-semibold">APP</div>
+                <div className="text-3xl font-bold">2020</div>
+                <div className="text-xs mt-2 opacity-90">Bipolar</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
