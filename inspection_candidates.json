@@ -1,0 +1,18 @@
+{
+  "candidates": [
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/moodspark-layout/src/App.tsx",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/moodspark-layout/src/main.tsx",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/moodspark-layout/src/pages/Index.tsx",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/src/App.jsx",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/src/main.jsx",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/src/pages/Home.jsx"
+  ],
+  "dirs": [
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/src",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/moodspark-layout/src",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/moodspark-layout/src/components",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/moodspark-layout/src/pages",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/src/components",
+    "/mnt/data/Mindbloom_unpacked/Mindbloom/src/pages"
+  ]
+}
