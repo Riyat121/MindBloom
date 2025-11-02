@@ -1,10 +1,103 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html, body, #root {
-  height: 100%;
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 195 30% 96%;
+    --foreground: 210 15% 25%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 15% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 15% 25%;
+
+    --primary: 180 45% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 195 45% 92%;
+    --secondary-foreground: 180 45% 35%;
+
+    --muted: 195 30% 94%;
+    --muted-foreground: 210 10% 50%;
+
+    --accent: 6 78% 57%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 195 20% 88%;
+    --input: 195 20% 88%;
+    --ring: 180 45% 45%;
+
+    --radius: 0.75rem;
+    
+    --hero-gradient-start: 195 55% 92%;
+    --hero-gradient-end: 195 45% 88%;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 20% 12%;
+    --foreground: 195 30% 95%;
+
+    --card: 210 18% 15%;
+    --card-foreground: 195 30% 95%;
+
+    --popover: 210 18% 15%;
+    --popover-foreground: 195 30% 95%;
+
+    --primary: 180 55% 55%;
+    --primary-foreground: 210 20% 12%;
+
+    --secondary: 210 15% 20%;
+    --secondary-foreground: 195 30% 95%;
+
+    --muted: 210 15% 18%;
+    --muted-foreground: 195 15% 65%;
+
+    --accent: 6 78% 57%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 195 30% 95%;
+
+    --border: 210 15% 22%;
+    --input: 210 15% 22%;
+    --ring: 180 55% 55%;
+    
+    --hero-gradient-start: 210 20% 15%;
+    --hero-gradient-end: 210 18% 12%;
+  }
 }
 
-/* Base background for soft, modern look */
-body {
-  @apply bg-gradient-to-br from-[#f9fafb] to-[#eef2ff] text-slate-800 antialiased;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }

@@ -1,14 +1,24 @@
-// firebase.js - add your Firebase web app config below
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  sendPasswordResetEmail,
+  updateProfile,
+} from "firebase/auth";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
-// TODO: Replace the config object below with your Firebase project's config
-// Import the functions you need from the SDKs you need
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
+// Your Firebase project config (replace these values with yours)
 const firebaseConfig = {
   apiKey: "AIzaSyB8cxnGedId_I8y0zC8uS5mRRdxTseEOSQ",
   authDomain: "mindbloom-database.firebaseapp.com",
@@ -19,9 +29,55 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export { auth, db, signInWithEmailAndPassword };
+// Setup Google Provider
+const provider = new GoogleAuthProvider();
+
+// ------------------
+// Google Sign-In Function
+// ------------------
+export const signInWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    // Optionally: Create or update a Firestore document for the user
+    const userRef = doc(db, "users", user.uid);
+    await setDoc(
+      userRef,
+      {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        createdAt: new Date().toISOString(),
+      },
+      { merge: true }
+    );
+
+    return user;
+  } catch (error) {
+    console.error("Google sign-in error:", error);
+    throw error;
+  }
+};
+
+// ------------------
+// Export everything else
+// ------------------
+export {
+  auth,
+  db,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  updateProfile,
+  doc,
+  setDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+};
