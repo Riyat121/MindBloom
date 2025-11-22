@@ -2,102 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
-  :root {
-    --background: 195 30% 96%;
-    --foreground: 210 15% 25%;
+	:root {
+		/* Vibrant Violet/Indigo Theme */
+		--background: 260 20% 98%;
+		/* Soft lavender-white */
+		--foreground: 260 10% 10%;
+		/* Deep purple-black */
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 15% 25%;
+		--card: 0 0% 100%;
+		--card-foreground: 260 10% 10%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 15% 25%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 260 10% 10%;
 
-    --primary: 180 45% 45%;
-    --primary-foreground: 0 0% 100%;
+		/* Primary: Vibrant Indigo */
+		--primary: 265 80% 60%;
+		--primary-foreground: 210 40% 98%;
 
-    --secondary: 195 45% 92%;
-    --secondary-foreground: 180 45% 35%;
+		/* Secondary: Soft Rose/Pink */
+		--secondary: 330 70% 90%;
+		--secondary-foreground: 330 60% 30%;
 
-    --muted: 195 30% 94%;
-    --muted-foreground: 210 10% 50%;
+		--muted: 260 20% 96%;
+		--muted-foreground: 260 10% 50%;
 
-    --accent: 6 78% 57%;
-    --accent-foreground: 0 0% 100%;
+		--accent: 260 20% 96%;
+		--accent-foreground: 260 10% 10%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
 
-    --border: 195 20% 88%;
-    --input: 195 20% 88%;
-    --ring: 180 45% 45%;
+		--border: 260 20% 90%;
+		--input: 260 20% 90%;
+		--ring: 265 80% 60%;
 
-    --radius: 0.75rem;
-    
-    --hero-gradient-start: 195 55% 92%;
-    --hero-gradient-end: 195 45% 88%;
+		--radius: 0.75rem;
+		/* Slightly rounder corners for friendly feel */
+	}
 
-    --sidebar-background: 0 0% 98%;
+	.dark {
+		/* Deep Rich Navy/Purple Background */
+		--background: 260 40% 8%;
+		--foreground: 260 10% 95%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+		--card: 260 40% 12%;
+		--card-foreground: 260 10% 95%;
 
-    --sidebar-primary: 240 5.9% 10%;
+		--popover: 260 40% 12%;
+		--popover-foreground: 260 10% 95%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+		/* Primary: Bright Electric Violet */
+		--primary: 265 90% 70%;
+		--primary-foreground: 260 40% 10%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+		/* Secondary: Muted Rose */
+		--secondary: 330 40% 20%;
+		--secondary-foreground: 330 40% 90%;
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+		--muted: 260 30% 20%;
+		--muted-foreground: 260 10% 70%;
 
-    --sidebar-border: 220 13% 91%;
+		--accent: 260 30% 20%;
+		--accent-foreground: 260 10% 95%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
 
-  .dark {
-    --background: 210 20% 12%;
-    --foreground: 195 30% 95%;
-
-    --card: 210 18% 15%;
-    --card-foreground: 195 30% 95%;
-
-    --popover: 210 18% 15%;
-    --popover-foreground: 195 30% 95%;
-
-    --primary: 180 55% 55%;
-    --primary-foreground: 210 20% 12%;
-
-    --secondary: 210 15% 20%;
-    --secondary-foreground: 195 30% 95%;
-
-    --muted: 210 15% 18%;
-    --muted-foreground: 195 15% 65%;
-
-    --accent: 6 78% 57%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 195 30% 95%;
-
-    --border: 210 15% 22%;
-    --input: 210 15% 22%;
-    --ring: 180 55% 55%;
-    
-    --hero-gradient-start: 210 20% 15%;
-    --hero-gradient-end: 210 18% 12%;
-  }
+		--border: 260 30% 20%;
+		--input: 260 30% 20%;
+		--ring: 265 90% 70%;
+	}
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+	* {
+		@apply border-border;
+	}
 
-  body {
-    @apply bg-background text-foreground;
-  }
+	body {
+		@apply bg-background text-foreground antialiased transition-colors duration-300;
+	}
+}
+
+/* Global Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Smooth Card Hover Effects */
+.card-hover {
+	@apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
 }

@@ -10,7 +10,7 @@ import {
   doc,
   setDoc,
   signInWithGoogle,
-  sendPasswordResetEmail, // <-- Import the new function
+  sendPasswordResetEmail,
 } from "../firebase.js";
 
 import { Button } from "@/components/ui/button";
@@ -27,9 +27,8 @@ import {
 import { Lock } from "lucide-react";
 
 // --- Google SVG Icon ---
-const GoogleIcon = (props) => (
+const GoogleIcon = (props: any) => (
   <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" {...props}>
-    {/* ... (Google SVG paths) ... */}
     <path
       d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
       fill="#4285F4"
@@ -58,7 +57,7 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState<boolean | "indeterminate">(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(""); // For success messages
   const navigate = useNavigate();
@@ -87,18 +86,17 @@ export default function Auth() {
   };
 
   // --- Main Submit Logic ---
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setSuccess("");
 
     if (view === "login") {
-      // --- LOGIN LOGIC ---
       if (!email || !password) return setError("Please enter email and password.");
       try {
         await signInWithEmailAndPassword(auth, email, password);
         localStorage.setItem("mindease_student_auth", "true");
-        navigate("/");
+        navigate("/dashboard");
       } catch (err) {
         setError("Invalid email or password.");
       }
@@ -124,7 +122,7 @@ export default function Auth() {
         await updateProfile(user, { displayName: name });
         setSuccess("Account created! Please log in.");
         setView("login"); // Switch to login view
-      } catch (err) {
+      } catch (err: any) {
         if (err.code === "auth/email-already-in-use") {
           setError("This email is already in use.");
         } else if (err.code === "auth/weak-password") {
@@ -150,9 +148,10 @@ export default function Auth() {
     try {
       await signInWithGoogle();
       localStorage.setItem("mindease_student_auth", "true");
-      navigate("/");
-    } catch (err) {
-      setError("Google sign-in failed. Please try again.");
+      navigate("/dashboard");
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Google sign-in failed. Please try again.");
     }
   };
 
@@ -272,7 +271,7 @@ export default function Auth() {
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="remember"
-                    checked={rememberMe}
+                    checked={rememberMe as boolean | "indeterminate"}
                     onCheckedChange={(checked) => setRememberMe(checked)}
                   />
                   <Label
@@ -362,6 +361,17 @@ export default function Auth() {
                 </button>
               </>
             )}
+          </div>
+
+          {/* --- BACK TO HOME --- */}
+          <div className="mt-6 text-center">
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center justify-center gap-1 mx-auto"
+            >
+              ← Back to Home
+            </button>
           </div>
         </CardContent>
       </Card>

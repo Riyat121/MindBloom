@@ -3,12 +3,15 @@
 // --- CORRECTED IMPORTS ---
 
 // This file uses named export
+// This file uses named export
 import { Navigation } from "@/components/Navigation";
 
 // These files use "export function Name()" or "export const Name"
 import { Hero } from "@/components/Hero";
-import { Features } from "@/components/Features"; // This now matches your new .tsx file
+import { Features } from "@/components/Features";
 import { Reviews } from "@/components/Reviews";
+import { Pricing } from "@/components/Pricing";
+import { Blog } from "@/components/Blog";
 
 // This file uses "export function Component()"
 import { Component as Footer } from "@/components/Footer";
@@ -21,7 +24,9 @@ const Index = () => {
       <Navigation />
       <Hero />
       <Features />
+      <Pricing />
       <Reviews />
+      <Blog />
       <Footer />
     </div>
   );

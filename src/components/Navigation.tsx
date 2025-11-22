@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import logoIcon from "@/assets/logo-icon.png";
 import { Link } from "react-router-dom"; // <-- 1. IMPORT LINK HERE
+import { ModeToggle } from "@/components/mode-toggle";
 
 export const Navigation = () => {
   return (
@@ -13,36 +14,24 @@ export const Navigation = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-8">
-            <a
-              href="#features"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Features
-            </a>
-            <a
-              href="#pricing"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Pricing
-            </a>
-            <a
-              href="#reviews"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Reviews
-            </a>
-            <a
-              href="#blog"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Blog
-            </a>
+            {["Features", "Pricing", "Reviews", "Blog"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-base font-semibold text-foreground/80 hover:text-primary transition-all hover:scale-105 relative group"
+              >
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              </a>
+            ))}
           </div>
 
-          {/* 2. ADD "asChild" TO THE BUTTON AND WRAP THE TEXT IN A <Link> */}
-          <Button asChild variant="hero" size="lg">
-            <Link to="/auth">Login / Sign Up</Link>
-          </Button>
+          <div className="flex items-center gap-4">
+            <ModeToggle />
+            <Button asChild variant="hero" size="lg">
+              <Link to="/auth">Login / Sign Up</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </nav>
