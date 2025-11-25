@@ -15,6 +15,9 @@ import { LogOut, LayoutDashboard, Calendar, BarChart2, Activity } from "lucide-r
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ModeToggle } from "@/components/mode-toggle";
 import HealthDashboard from "@/components/HealthDashboard";
+import { MoodSummary } from "@/components/dashboard/MoodSummary";
+import { WellnessTools } from "@/components/dashboard/WellnessTools";
+import { WeeklyChallenges } from "@/components/dashboard/WeeklyChallenges";
 
 export default function Dashboard() {
 	const navigate = useNavigate();
@@ -70,15 +73,20 @@ export default function Dashboard() {
 
 			<main className="max-w-7xl mx-auto p-4 md:p-8 space-y-8">
 				{/* Welcome & Quick Action Section */}
-				<div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-8 text-white shadow-lg flex flex-col md:flex-row justify-between items-center gap-6">
-					<div className="space-y-2">
-						<h2 className="text-3xl font-bold">How are you feeling today?</h2>
-						<p className="text-indigo-100 max-w-xl">
-							Tracking your mood is the first step to understanding your well-being. Take a moment to check in with yourself.
-						</p>
-					</div>
-					<div className="bg-white/10 p-1 rounded-xl backdrop-blur-sm">
-						<MoodQuiz onComplete={() => window.location.reload()} />
+				{/* Welcome & Quick Action Section */}
+				<div className={`grid grid-cols-1 ${logs.length >= 2 ? 'md:grid-cols-2' : ''} gap-6`}>
+					<MoodSummary logs={logs} className="h-full" />
+
+					<div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg flex flex-col justify-between items-start gap-6 h-full">
+						<div className="space-y-2">
+							<h2 className="text-2xl font-bold">How are you feeling today?</h2>
+							<p className="text-indigo-100 max-w-xl text-sm md:text-base">
+								Tracking your mood is the first step to understanding your well-being. Take a moment to check in with yourself.
+							</p>
+						</div>
+						<div className="bg-white/10 p-1 rounded-xl backdrop-blur-sm w-full md:w-auto">
+							<MoodQuiz onComplete={() => window.location.reload()} />
+						</div>
 					</div>
 				</div>
 
@@ -101,6 +109,7 @@ export default function Dashboard() {
 
 							{/* Right Column: Quick Stats or Calendar Preview */}
 							<div className="space-y-6">
+								<WeeklyChallenges logs={logs} />
 								<Suggestions logs={logs} />
 								<CalendarView logs={logs} />
 							</div>
@@ -136,6 +145,10 @@ export default function Dashboard() {
 						<HealthDashboard />
 					</TabsContent>
 				</Tabs>
+
+				<div className="mt-8">
+					<WellnessTools />
+				</div>
 			</main>
 		</div >
 	);

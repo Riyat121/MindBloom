@@ -19,12 +19,15 @@ import {
 } from "recharts";
 import { format, parseISO } from "date-fns";
 
+import { useInsights } from "@/hooks/useInsights";
+
 interface AnalyticsViewProps {
 	logs: MoodLog[];
 }
 
 export function AnalyticsView({ logs }: AnalyticsViewProps) {
 	const [chartType, setChartType] = useState("line");
+	const insights = useInsights(logs);
 
 	// Process data for charts
 	const data = logs.map(log => ({
@@ -66,7 +69,7 @@ export function AnalyticsView({ logs }: AnalyticsViewProps) {
 				</Select>
 			</CardHeader>
 			<CardContent>
-				<div className="h-[400px] w-full">
+				<div className="h-[400px] w-full mb-8">
 					<ResponsiveContainer width="100%" height="100%">
 						{chartType === "line" ? (
 							<LineChart data={data}>
@@ -110,6 +113,32 @@ export function AnalyticsView({ logs }: AnalyticsViewProps) {
 							</AreaChart>
 						)}
 					</ResponsiveContainer>
+				</div>
+
+				<div className="border-t pt-6">
+					<h3 className="text-lg font-semibold mb-4">Emotional Triggers (from your journals)</h3>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+						{insights.length === 0 ? (
+							<p className="text-muted-foreground col-span-3 text-center py-4">
+								No patterns detected yet. Keep journaling to see insights!
+							</p>
+						) : (
+							insights.map((insight) => (
+								<div key={insight.category} className="p-4 rounded-lg border bg-card/50 flex items-center justify-between">
+									<div>
+										<p className="font-medium">{insight.category}</p>
+										<p className="text-sm text-muted-foreground">{insight.count} mentions</p>
+									</div>
+									<div className={`text-right ${insight.impact === 'positive' ? 'text-green-500' :
+										insight.impact === 'negative' ? 'text-red-500' : 'text-yellow-500'
+										}`}>
+										<p className="font-bold text-xl">{insight.avgMood}</p>
+										<p className="text-xs">Avg Mood</p>
+									</div>
+								</div>
+							))
+						)}
+					</div>
 				</div>
 			</CardContent>
 		</Card>
