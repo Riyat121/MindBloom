@@ -11,9 +11,10 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Loading } from "@/components/ui/Loading";
 import { Button } from "@/components/ui/button";
-import { LogOut, LayoutDashboard, Calendar, BarChart2 } from "lucide-react";
+import { LogOut, LayoutDashboard, Calendar, BarChart2, Activity } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ModeToggle } from "@/components/mode-toggle";
+import HealthDashboard from "@/components/HealthDashboard";
 
 export default function Dashboard() {
 	const navigate = useNavigate();
@@ -83,10 +84,11 @@ export default function Dashboard() {
 
 				{/* Main Content Tabs */}
 				<Tabs defaultValue="overview" className="space-y-6">
-					<TabsList className="grid w-full grid-cols-3 lg:w-[400px]">
+					<TabsList className="grid w-full grid-cols-4 lg:w-[500px]">
 						<TabsTrigger value="overview" className="flex gap-2"><LayoutDashboard className="h-4 w-4" /> Overview</TabsTrigger>
 						<TabsTrigger value="calendar" className="flex gap-2"><Calendar className="h-4 w-4" /> Calendar</TabsTrigger>
 						<TabsTrigger value="analytics" className="flex gap-2"><BarChart2 className="h-4 w-4" /> Analytics</TabsTrigger>
+						<TabsTrigger value="health" className="flex gap-2"><Activity className="h-4 w-4" /> Health</TabsTrigger>
 					</TabsList>
 
 					<TabsContent value="overview" className="space-y-6">
@@ -129,8 +131,12 @@ export default function Dashboard() {
 					<TabsContent value="analytics">
 						<AnalyticsView logs={logs} />
 					</TabsContent>
+
+					<TabsContent value="health">
+						<HealthDashboard />
+					</TabsContent>
 				</Tabs>
 			</main>
-		</div>
+		</div >
 	);
 }
