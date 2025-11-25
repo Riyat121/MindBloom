@@ -11,13 +11,14 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Loading } from "@/components/ui/Loading";
 import { Button } from "@/components/ui/button";
-import { LogOut, LayoutDashboard, Calendar, BarChart2, Activity } from "lucide-react";
+import { LogOut, LayoutDashboard, Calendar, BarChart2, Activity, User } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ModeToggle } from "@/components/mode-toggle";
 import HealthDashboard from "@/components/HealthDashboard";
 import { MoodSummary } from "@/components/dashboard/MoodSummary";
 import { WellnessTools } from "@/components/dashboard/WellnessTools";
 import { WeeklyChallenges } from "@/components/dashboard/WeeklyChallenges";
+import { MoodReport } from "@/components/dashboard/MoodReport";
 
 export default function Dashboard() {
 	const navigate = useNavigate();
@@ -61,9 +62,14 @@ export default function Dashboard() {
 
 				<div className="flex items-center gap-4">
 					<ModeToggle />
+					<MoodReport logs={logs} />
 					<span className="text-sm text-gray-600 dark:text-gray-300 hidden sm:inline-block">
 						Welcome, {user?.displayName?.split(" ")[0]}
 					</span>
+					<Button variant="ghost" size="sm" onClick={() => navigate('/profile')}>
+						<User className="h-4 w-4 mr-2" />
+						Profile
+					</Button>
 					<Button variant="ghost" size="sm" onClick={handleLogout} className="text-red-500 hover:text-red-600 hover:bg-red-50">
 						<LogOut className="h-4 w-4 mr-2" />
 						Log Out
@@ -72,7 +78,6 @@ export default function Dashboard() {
 			</header>
 
 			<main className="max-w-7xl mx-auto p-4 md:p-8 space-y-8">
-				{/* Welcome & Quick Action Section */}
 				{/* Welcome & Quick Action Section */}
 				<div className={`grid grid-cols-1 ${logs.length >= 2 ? 'md:grid-cols-2' : ''} gap-6`}>
 					<MoodSummary logs={logs} className="h-full" />

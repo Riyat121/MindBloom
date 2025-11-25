@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Droplets, Timer, Heart, Wind, Play, Pause, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
+import { useWellnessData } from "@/hooks/useWellnessData";
 
 export const WellnessTools = () => {
+	const { addFocusTime, addWater, addGratitude, stats } = useWellnessData();
+
 	// Breathing Tool
 	const [isBreathing, setIsBreathing] = useState(false);
 	const [breathText, setBreathText] = useState("Inhale");
@@ -38,7 +41,9 @@ export const WellnessTools = () => {
 			}, 1000);
 		} else if (timeLeft === 0) {
 			setIsTimerRunning(false);
-			toast.success("Focus session complete!");
+			toast.success("Focus session complete! +25 mins saved.");
+			addFocusTime(25);
+			setTimeLeft(25 * 60);
 		}
 		return () => clearInterval(interval);
 	}, [isTimerRunning, timeLeft]);
@@ -50,7 +55,13 @@ export const WellnessTools = () => {
 	};
 
 	// Water Tool
-	const [waterCount, setWaterCount] = useState(0);
+	const [sessionWater, setSessionWater] = useState(0);
+
+	const handleAddWater = () => {
+		setSessionWater(prev => prev + 1);
+		addWater(1);
+		toast.success("Hydration recorded! 💧");
+	};
 
 	// Gratitude Tool
 	const [gratitudeInput, setGratitudeInput] = useState("");
@@ -58,6 +69,7 @@ export const WellnessTools = () => {
 	const saveGratitude = (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!gratitudeInput.trim()) return;
+		addGratitude(gratitudeInput);
 		toast.success("Gratitude saved! ✨");
 		setGratitudeInput("");
 	};
@@ -128,26 +140,16 @@ export const WellnessTools = () => {
 					</CardHeader>
 					<CardContent className="flex flex-col items-center justify-center py-4 space-y-4">
 						<div className="flex items-end gap-1">
-							<span className="text-4xl font-bold text-blue-800 dark:text-blue-200">{waterCount}</span>
-							<span className="text-sm text-blue-600 dark:text-blue-400 mb-1">/ 8 cups</span>
+							<span className="text-4xl font-bold text-blue-800 dark:text-blue-200">{sessionWater}</span>
+							<span className="text-sm text-blue-600 dark:text-blue-400 mb-1">cups today</span>
 						</div>
-						<div className="flex gap-2 w-full">
-							<Button
-								size="sm"
-								variant="outline"
-								className="flex-1"
-								onClick={() => setWaterCount(Math.max(0, waterCount - 1))}
-							>
-								-
-							</Button>
-							<Button
-								size="sm"
-								className="flex-1 bg-blue-500 hover:bg-blue-600"
-								onClick={() => setWaterCount(waterCount + 1)}
-							>
-								+
-							</Button>
-						</div>
+						<Button
+							size="sm"
+							className="w-full bg-blue-500 hover:bg-blue-600"
+							onClick={handleAddWater}
+						>
+							+ Add Cup
+						</Button>
 					</CardContent>
 				</Card>
 
