@@ -112,6 +112,26 @@ export const WellnessTools = () => {
 						<div className="text-4xl font-mono font-bold text-orange-800 dark:text-orange-200">
 							{formatTime(timeLeft)}
 						</div>
+
+						{/* Custom Time Input */}
+						{!isTimerRunning && (
+							<div className="flex items-center justify-center gap-2">
+								<span className="text-xs text-orange-600 dark:text-orange-400 font-medium">Set:</span>
+								<Input
+									type="number"
+									min="1"
+									max="120"
+									placeholder="25"
+									className="h-8 w-16 text-center bg-white/50 dark:bg-black/20 border-orange-200 dark:border-orange-800 focus-visible:ring-orange-400"
+									onChange={(e) => {
+										const val = parseInt(e.target.value);
+										if (val > 0) setTimeLeft(val * 60);
+									}}
+								/>
+								<span className="text-xs text-orange-600 dark:text-orange-400">min</span>
+							</div>
+						)}
+
 						<div className="flex gap-2 w-full">
 							<Button
 								size="sm"

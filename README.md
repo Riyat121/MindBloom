@@ -1,73 +1,83 @@
-# Welcome to your Lovable project
+# 🌸 Mindbloom - AI Mental Health Companion
 
-## Project info
+Mindbloom is a comprehensive mental health and wellness application designed to help users track their mood, manage stress, and build healthy habits. It features an AI-powered empathetic chatbot, detailed analytics, and interactive wellness tools.
 
-**URL**: https://lovable.dev/projects/0462f368-3065-44f1-96ba-6c03b2ec0690
+![Dashboard Demo](assests/demo.png)
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+-   **Mood Tracking**: Log daily moods, emotions, and journal entries.
+-   **AI Companion**: Chat with "Mindbloom," an empathetic AI assistant powered by Google Gemini, offering support and coping strategies.
+-   **Weekly Insights**: AI-generated reports analyzing mood trends, sleep patterns, and emotional triggers.
+-   **Wellness Tools**:
+    -   **Focus Timer**: Customizable Pomodoro timer for productivity.
+    -   **Breathing Exercise**: Guided 4-7-8 breathing for relaxation.
+    -   **Hydration Tracker**: Log water intake.
+    -   **Gratitude Journal**: Save daily gratitude notes.
+-   **Personal Profile**: Track streaks, total focus hours, and customize the app theme.
+-   **Secure Data**: All user data is securely stored using Firebase Firestore.
 
-**Use Lovable**
+## 🛠️ Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0462f368-3065-44f1-96ba-6c03b2ec0690) and start prompting.
+-   **Frontend**: React (Vite), TypeScript
+-   **Styling**: Tailwind CSS, Shadcn UI, Lucide React (Icons)
+-   **Backend/Database**: Firebase (Authentication & Firestore)
+-   **AI Integration**: Google Gemini API (`gemini-1.5-flash`)
+-   **Charts**: Recharts
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Getting Started
 
-**Use your preferred IDE**
+Follow these steps to run the project locally on your machine.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+-   Node.js (v18 or higher)
+-   npm or yarn
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/mindbloom.git
+    cd mindbloom
+    ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3.  **Set up Environment Variables:**
+    Create a `.env` file in the root directory and add your keys:
+    ```env
+    VITE_GEMINI_API_KEY=your_google_gemini_api_key
+    VITE_FIREBASE_API_KEY=your_firebase_api_key
+    VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+    VITE_FIREBASE_PROJECT_ID=your_project_id
+    VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+    VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+    VITE_FIREBASE_APP_ID=your_app_id
+    ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-**Edit a file directly in GitHub**
+5.  **Open in Browser:**
+    Navigate to `http://localhost:5173` to view the app.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📸 Screenshots
 
-**Use GitHub Codespaces**
+| Dashboard | Chatbot |
+| :---: | :---: |
+| ![Dashboard](assests/dashboard.png) | ![Chatbot](assests/chatbot.png) |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+## 🤝 Contributing
 
-This project is built with:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📄 License
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0462f368-3065-44f1-96ba-6c03b2ec0690) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This project is licensed under the MIT License.

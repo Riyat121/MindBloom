@@ -84,6 +84,9 @@ export const MoodSummary = ({ logs, className }: MoodSummaryProps) => {
 						{insights.trend === 'stable' && <Minus className="h-4 w-4 text-white/50" />}
 					</div>
 				</div>
+				<div className="mt-auto pt-2 text-xs text-white/60 text-center border-t border-white/10">
+					{new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB')} - {new Date().toLocaleDateString('en-GB')}
+				</div>
 			</CardContent>
 		</Card>
 	);

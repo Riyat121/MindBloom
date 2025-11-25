@@ -38,8 +38,8 @@ export function Chatbot() {
 			)}
 
 			{isOpen && (
-				<Card className="w-[350px] md:w-[400px] h-[500px] shadow-2xl flex flex-col animate-in slide-in-from-bottom-10 fade-in">
-					<CardHeader className="bg-primary text-primary-foreground p-4 rounded-t-xl flex flex-row justify-between items-center">
+				<Card className="w-[380px] md:w-[450px] h-[600px] shadow-2xl flex flex-col animate-in slide-in-from-bottom-10 fade-in border-2 border-primary/20">
+					<CardHeader className="bg-primary text-primary-foreground p-4 rounded-t-xl flex flex-row justify-between items-center shrink-0">
 						<CardTitle className="text-lg flex items-center gap-2">
 							<MessageCircle className="h-5 w-5" />
 							Mindbloom Companion
@@ -49,25 +49,29 @@ export function Chatbot() {
 						</Button>
 					</CardHeader>
 
-					<CardContent className="flex-1 p-4 overflow-hidden">
+					<CardContent className="flex-1 p-4 overflow-hidden bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 						<ScrollArea className="h-full pr-4">
-							<div className="space-y-4">
+							<div className="space-y-4 pb-4">
 								{messages.map((msg) => (
 									<div
 										key={msg.id}
 										className={cn(
-											"flex w-max max-w-[80%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
+											"flex w-fit max-w-[85%] flex-col gap-2 rounded-2xl px-4 py-3 text-sm shadow-sm",
 											msg.role === "user"
-												? "ml-auto bg-primary text-primary-foreground"
-												: "bg-muted"
+												? "ml-auto bg-primary text-primary-foreground rounded-br-none"
+												: "bg-muted text-foreground rounded-bl-none"
 										)}
 									>
-										{msg.text}
+										<p className="leading-relaxed whitespace-pre-wrap">{msg.text}</p>
 									</div>
 								))}
 								{loading && (
-									<div className="flex w-max max-w-[80%] flex-col gap-2 rounded-lg px-3 py-2 text-sm bg-muted">
-										<Loader2 className="h-4 w-4 animate-spin" />
+									<div className="flex w-fit max-w-[85%] flex-col gap-2 rounded-2xl px-4 py-3 text-sm bg-muted rounded-bl-none">
+										<div className="flex gap-1">
+											<span className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+											<span className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+											<span className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce"></span>
+										</div>
 									</div>
 								)}
 								<div ref={scrollRef} />
@@ -75,21 +79,22 @@ export function Chatbot() {
 						</ScrollArea>
 					</CardContent>
 
-					<CardFooter className="p-4 pt-0">
+					<CardFooter className="p-4 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 						<form
 							onSubmit={(e) => {
 								e.preventDefault();
 								handleSend();
 							}}
-							className="flex w-full items-center space-x-2"
+							className="flex w-full items-center gap-2"
 						>
 							<Input
 								placeholder="Type a message..."
 								value={input}
 								onChange={(e) => setInput(e.target.value)}
 								disabled={loading}
+								className="flex-1 bg-background"
 							/>
-							<Button type="submit" size="icon" disabled={loading}>
+							<Button type="submit" size="icon" disabled={loading} className="shrink-0">
 								<Send className="h-4 w-4" />
 							</Button>
 						</form>
