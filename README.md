@@ -2,7 +2,7 @@
 
 Mindbloom is a comprehensive mental health and wellness application designed to help users track their mood, manage stress, and build healthy habits. It features an AI-powered empathetic chatbot, detailed analytics, and interactive wellness tools.
 
-![Dashboard Demo](assests/demo.png)
+![Dashboard Demo](/public/assests/demo.png)
 
 ## ✨ Features
 
@@ -71,7 +71,7 @@ Follow these steps to run the project locally on your machine.
 
 | Dashboard | Chatbot |
 | :---: | :---: |
-| ![Dashboard](assests/dashboard.png) | ![Chatbot](assests/chatbot.png) |
+| ![Dashboard](/public/assests/dashboard.png) | ![Chatbot](/public/assests/chatbot.png) |
 
 
 ## 🤝 Contributing
