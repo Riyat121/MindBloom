@@ -22,7 +22,7 @@ Mindbloom is a comprehensive mental health and wellness application designed to 
 -   **Frontend**: React (Vite), TypeScript
 -   **Styling**: Tailwind CSS, Shadcn UI, Lucide React (Icons)
 -   **Backend/Database**: Firebase (Authentication & Firestore)
--   **AI Integration**: Google Gemini API (`gemini-1.5-flash`)
+-   **AI Integration**: Google Gemini API (`gemini-2.5-flash`)
 -   **Charts**: Recharts
 
 ## 🚀 Getting Started
