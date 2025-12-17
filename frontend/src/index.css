@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		/* Vibrant Violet/Indigo Theme */
+		--background: 260 20% 98%;
+		/* Soft lavender-white */
+		--foreground: 260 10% 10%;
+		/* Deep purple-black */
+
+		--card: 0 0% 100%;
+		--card-foreground: 260 10% 10%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 260 10% 10%;
+
+		/* Primary: Vibrant Indigo */
+		--primary: 265 80% 60%;
+		--primary-foreground: 210 40% 98%;
+
+		/* Secondary: Soft Rose/Pink */
+		--secondary: 330 70% 90%;
+		--secondary-foreground: 330 60% 30%;
+
+		--muted: 260 20% 96%;
+		--muted-foreground: 260 10% 50%;
+
+		--accent: 260 20% 96%;
+		--accent-foreground: 260 10% 10%;
+
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 260 20% 90%;
+		--input: 260 20% 90%;
+		--ring: 265 80% 60%;
+
+		--radius: 0.75rem;
+		/* Slightly rounder corners for friendly feel */
+	}
+
+	.dark {
+		/* Deep Rich Navy/Purple Background */
+		--background: 260 40% 8%;
+		--foreground: 260 10% 95%;
+
+		--card: 260 40% 12%;
+		--card-foreground: 260 10% 95%;
+
+		--popover: 260 40% 12%;
+		--popover-foreground: 260 10% 95%;
+
+		/* Primary: Bright Electric Violet */
+		--primary: 265 90% 70%;
+		--primary-foreground: 260 40% 10%;
+
+		/* Secondary: Muted Rose */
+		--secondary: 330 40% 20%;
+		--secondary-foreground: 330 40% 90%;
+
+		--muted: 260 30% 20%;
+		--muted-foreground: 260 10% 70%;
+
+		--accent: 260 30% 20%;
+		--accent-foreground: 260 10% 95%;
+
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 260 30% 20%;
+		--input: 260 30% 20%;
+		--ring: 265 90% 70%;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground antialiased transition-colors duration-300;
+	}
+}
+
+/* Global Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Smooth Card Hover Effects */
+.card-hover {
+	@apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
